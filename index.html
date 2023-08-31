@@ -1,24 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Google Authentication Example</title>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="672030639654-pp2c6ppm7tu6t1e5bt924pm6krbu31ne.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="530312392972-h70v7jp6rte9c6v8odlnv51f8tsu2bku.apps.googleusercontent.com">
 </head>
 <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" id="signin"></div>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <a href="#" onclick="signOut();">Sign out</a>
-    
-    <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
+
     <script>
         function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
@@ -28,5 +18,14 @@
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
     </script>
+
+<script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script>
 </body>
 </html>
