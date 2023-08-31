@@ -3,71 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CU-DR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <?
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>customize-se</h2>
+
+<button class="customize-se ">Section 1 </button>
+<div class="panel">
+  <div class="dr-type top">
+    <img class="top1" data-detail="20" src="./image/introduction (2).png" alt="">
+    <img class="top2" data-detail="30" src="./image/introduction (2).png" alt="">
+    <img class="top3" src="./image/introduction (2).png" alt="">
+  </div>
+  <div class="dr-color">
+    <h4>colour</h4>
+        <img class="top-color-1" src="./image/introduction (2).png" alt="">
+        <img class="top-color-2" src="./image/introduction (2).png" alt="">
+        <img class="top-color-3" src="./image/introduction (2).png" alt="">
+        <p class="top detail-slider">colour detail</p>
+    </div>
+</div>
+
+<!-- <button class="customize-se">Section 2</button>
+<div class="panel">
+    <div class="dr-type ">
+        <img class="body1" src="./image/introduction (2).png" alt="">
+        <img class="body2" src="./image/introduction (2).png" alt="">
+        <img class="body3" src="./image/introduction (2).png" alt="">
+      </div>
+      <div class="dr-color">
+        <h4>colour</h4>
+            <img class="body-color-1" src="./image/introduction (2).png" alt="">
+            <img class="body-color-2" src="./image/introduction (2).png" alt="">
+            <img class="body-color-3" src="./image/introduction (2).png" alt="">
+            <p class="body detail-slider">colour detail</p>
+        </div>
+    </div>
+
+<button class="customize-se">Section 3</button>
+<div class="panel">
+    <div class="dr-type ">
+        <img class="lower1" src="./image/introduction (2).png" alt="">
+        <img class="lower2" src="./image/introduction (2).png" alt="">
+        <img class="lower3" src="./image/introduction (2).png" alt="">
+      </div>
+      <div class="dr-color">
+        <h4>colour</h4>
+            <img class="lower-color-1" src="./image/introduction (2).png" alt="">
+            <img class="lower-color-2" src="./image/introduction (2).png" alt="">
+            <img class="lower-color-3" src="./image/introduction (2).png" alt="">
+            <p class="lower detail-slider">colour detail</p>
+        </div>
+    </div> -->
+            </div>
+
+
+            <div class="col-md-5 cuz-dum">
+                <img src="./image/model.png" alt="">
+                <!-- <div class="top-dress-ch"> -->
+                  <img class="top-img" src="./image/top/d-1.png" alt="">
+                <!-- </div> -->
+
+                <!-- <div class="top-dress-ch">
+                    
+                    <img class="bod-img" src="./image/bod/body.png" alt="">
+                </div>
+                <div class="top-dress-ch">
+                  
+                    <img class="low-img" src="./image/low/lower.png" alt=""></div> -->
+            </div>
+            <div class="col-md-3 detail-section ">
+                <h4>title</h4>
+                <h6>Charge <br> $<span class="colour_pri">20 </span></h6>
+                <h6>Charge <br> $<span class="ti_pri">00 </span></h6>
+                <h6 style="font-size: 3rem;">total <br> $<strong class="ti_total" >00 </strong></h6>
+                <a href="#">details</a>
+
+                <div class="detail_main">
+                    <h3>title</h3>
+                     <div class="does">
+                        <h5>title</h5>
+                        <ul>
+                            <li>Lorem, ipsum dolor.</li>
+                            <li>Lorem, ipsum dolor.</li>
+                            <li>Lorem, ipsum dolor.</li>
+                        </ul>
+                     </div>
+
+                     <div class="does_nt">
+                        <h5>title</h5>
+                        <ul>
+                            <li>Lorem, ipsum dolor.</li>
+                            <li>Lorem, ipsum dolor.</li>
+                            <li>Lorem, ipsum dolor.</li>
+                        </ul>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    from flask import Flask, redirect, url_for, session
-from flask_oauthlib.client import OAuth
 
-app = Flask(__name__)
-app.secret_key = 'AIzaSyAIZp0QJe96j-Yne3FgWJn1_eiwwaDiN24'
+<div class="quality-co col-md-8">
+    <div class="close" >X</div>
+        <h4>title</h4>
+        <img class="quality-img"  src=" " alt="">
+        <p>Loem, est veniam aut officiis sunt, assumenda quis cumque amet vel reiciendis sit?</p>
+  
+</div>
 
-# Configure Google OAuth
-oauth = OAuth(app)
-google = oauth.remote_app(
-    'google',
-    consumer_key='530312392972-h70v7jp6rte9c6v8odlnv51f8tsu2bku.apps.googleusercontent.com',
-    consumer_secret='your_google_client_secret',
-    request_token_params={
-        'scope': 'email',
-    },
-    base_url='https://www.googleapis.com/oauth2/v1/',
-    request_token_url=None,
-    access_token_method='POST',
-    access_token_url='https://accounts.google.com/o/oauth2/token',
-    authorize_url='https://accounts.google.com/o/oauth2/auth',
-)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./script - Copy.js"></script>
 
-# Routes
-@app.route('/')
-def index():
-    if 'google_token' in session:
-        user_info = google.get('userinfo')
-        return f'Logged in as: {user_info.data["email"]}'
-    return 'Not logged in.'
 
-@app.route('/login')
-def login():
-    return google.authorize(callback=url_for('authorized', _external=True))
-
-@app.route('/logout')
-def logout():
-    session.pop('google_token', None)
-    return 'Logged out.'
-
-@app.route('/login/authorized')
-def authorized():
-    response = google.authorized_response()
-    if response is None or response.get('access_token') is None:
-        return 'Access denied: reason={} error={}'.format(
-            request.args['error_reason'],
-            request.args['error_description']
-        )
+    <!-- <script>
+        for(var i = 0; i < 4; i++){
+    var ele = document.createElement("div");
+    ele.setAttribute("class", "name" + (i + 1));
+    document.body.appendChild(ele);
+    }
     
-    session['google_token'] = (response['access_token'], '')
-    user_info = google.get('userinfo')
-    return f'Successfully logged in as: {user_info.data["email"]}'
+    </script> -->
+<!-- 
+<script>
+    $(document).ready(function() {
+    $(".customize-se").click(function() {
+        var section = $(this).next(".panel");
+        section.toggle(); // Toggle the visibility of the panel
+    });
+    });
+</script> -->
 
-@google.tokengetter
-def get_google_oauth_token():
-    return session.get('google_token')
-
-if __name__ == '__main__':
-    app.run()
-
-    
-    ?>
+  
 </body>
 </html>
