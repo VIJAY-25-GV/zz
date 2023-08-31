@@ -4,29 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="672030639654-pp2c6ppm7tu6t1e5bt924pm6krbu31ne.apps.googleusercontent.com">
 </head>
 <body>
-    <div class="g-signin2" data-onsuccess="onSignIn" id="signin"></div>
-    <a href="#" onclick="signOut();">Sign out</a>
+    <?
     
-    <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-        });
-      }
-    </script>
-    <script>
-        function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-    </script>
+    from flask import Flask, redirect, url_for, session
+from flask_oauthlib.client import OAuth
+
+app = Flask(__name__)
+app.secret_key = 'AIzaSyAIZp0QJe96j-Yne3FgWJn1_eiwwaDiN24'
+
+# Configure Google OAuth
+oauth = OAuth(app)
+google = oauth.remote_app(
+    'google',
+    consumer_key='530312392972-h70v7jp6rte9c6v8odlnv51f8tsu2bku.apps.googleusercontent.com',
+    consumer_secret='your_google_client_secret',
+    request_token_params={
+        'scope': 'email',
+    },
+    base_url='https://www.googleapis.com/oauth2/v1/',
+    request_token_url=None,
+    access_token_method='POST',
+    access_token_url='https://accounts.google.com/o/oauth2/token',
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+)
+
+# Routes
+@app.route('/')
+def index():
+    if 'google_token' in session:
+        user_info = google.get('userinfo')
+        return f'Logged in as: {user_info.data["email"]}'
+    return 'Not logged in.'
+
+@app.route('/login')
+def login():
+    return google.authorize(callback=url_for('authorized', _external=True))
+
+@app.route('/logout')
+def logout():
+    session.pop('google_token', None)
+    return 'Logged out.'
+
+@app.route('/login/authorized')
+def authorized():
+    response = google.authorized_response()
+    if response is None or response.get('access_token') is None:
+        return 'Access denied: reason={} error={}'.format(
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    
+    session['google_token'] = (response['access_token'], '')
+    user_info = google.get('userinfo')
+    return f'Successfully logged in as: {user_info.data["email"]}'
+
+@google.tokengetter
+def get_google_oauth_token():
+    return session.get('google_token')
+
+if __name__ == '__main__':
+    app.run()
+
+    
+    ?>
 </body>
 </html>
