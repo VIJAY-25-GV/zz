@@ -1,31 +1,595 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Google Authentication Example</title>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="672030639654-pp2c6ppm7tu6t1e5bt924pm6krbu31ne.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CU-DR-2</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <a href="#" onclick="signOut();">Sign out</a>
 
-    <script>
-        function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-    </script>
+    <!-- <div style="background-color: rgb(240, 183, 147);
+    position: absolute;
+    top: 24%;
+    right: 20%;
+    height: 300px;
+    width: 150px;
+    border-radius: 50%;
+    z-index: -1111;"></div>
+<div class="t-head">
+<div class="bg-grey">
+     -->
+    <!-- header============================================================= -->
+    
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container navbar-colour" >
+          <a class="navbar-brand" href="./index.html">
+            <img src="./image/chumma oru logo.png" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
+                <path
+                      class="line top"
+                      d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                <path
+                      class="line middle"
+                      d="m 30,50 h 40" />
+                <path
+                      class="line bottom"
+                      d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+              </svg>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                       <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                   <a class="nav-link" href="./customiz.html">Customise</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </li> -->
+                   
+                    <li class="nav-item">
+                      <a class="nav-link" herf="./index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Contact Us</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="search-and-icons">
+             
+              <div class="user-icons d-flex mb-2">
+                <div class="login"><a href="#">Login</a></div>
+                <div class="cart"> <span id="cartItemCount">0</span><a href="./cart.html"><i class="fa fa-cart-shopping"></i></a></div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </nav>
+
+<!-- header============================================================= -->
+
+<!-- slider=============================== -->
+
+
+<!-- Slider main container -->
+ <!-- Swiper -->
+
+ <!-- <div class="container  top-banner">
+    <div class="row">
+        <div class="col-md-5">
+            <h2>all uniform in <br><span>ONE PLACE</span></h2>
+            <p>Uniforms that Make the Grade! With uniforms with class, prices that last, and the promise that your school's signature style starts here, we've got you covered for the upcoming school year.</p>
+            <a class="extra-link" href="#">Explore</a>
+        </div>
+        <div class="col-md-4">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img src="./slider/slider.png" alt=""></div>
+                  <div class="swiper-slide"><img src="./slider/slider2.png" alt=""></div>
+                  <div class="swiper-slide"><img src="./slider/slider.png" alt=""></div>
+             
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+        </div>
+        <div class="col-md-3">
+            <div class="head-ex">
+                <img src="./image/dressing-room.png" alt="">
+                <h6>50<br><span>Dress comibation</span></h6>
+            </div>
+            <div class="head-ex">
+                <img src="./image/dressing-room.png" alt="">
+                <h6>20<br><span>Dress colour</span></h6>
+            </div>
+            <div class="head-ex">
+                <img src="./image/dressing-room.png" alt="">
+                <h6>50<br><span>Dress desgins</span></h6>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- slider=============================== -->
+<!-- </div>
+</div> -->
+
+
+<!-- banner==================================== -->
+<!-- <div class="com-space banner-top">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>title</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis ea veniam rerum dicta perferendis adipisci odit! Odit assumenda aliquam veritatis!</p>
+      </div>
+      <div class="col-md-6">
+        <img class="shirt-ab" src="./image/model-full.png" alt="">
+        <img class="pant-ab" src="./image/pan/pant.png" alt="">
+        <img class="tie-ab" src="./image/tie/tie.png" alt="">
+        <img class="half-ab" src="./image/model-half.png" alt="">
+        <img class="shirt-color" src="./image/top/yellow/model-full.png" alt="">
+        <img class="shirt-color2" src="./image/top/red/model-half.png" alt="">
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- banner==================================== -->
+
+
+<!-- image-slider -->
+
+<div class="container-fluid com-space new-arri">
+  <div class="container">
+    
+<h4>Shop Now</h4>
+<!-- <div class="redirection-link">
+  <a class="extra-link" href="#">more <i class="fa-solid fa-arrow-right"></i></a>
+</div> -->
+<!-- <p>  <span>Acchoos</span> the one stop gallery for all kinds of
+  fabrics,Floral print georgette fabric available Createat store
+  can be customized as saree, kurti or as per ur dream
+  dress </p> -->
+
+
+<div class="owl-carousel owl-theme">
+  
+    <div class="item">
+      <a href="./shirt-pro.html">
+        <img class="xyz" data-alt-src="./product/pro-11.png" src="./product/pro-1.png" />
+      </a>
+      <!-- <p><a href="./shirt-pro.html">view</a></p>  -->
+      <a href="./shirt-pro.html">
+        <div class="pri-de"><h6>Price  ₹300 - ₹600</h6> <h2>Shirts section</h2></div> 
+      </a>
+    </div>
+
+    <div class="item">
+      <a href="./pant-pro.html">
+      <img class="xyz" data-alt-src="./product/pro-22.png" src="product/pro-2.png" />
+      </a>
+       <!-- <p><a href="./pant-pro.html">view</a></p> -->
+       <a href="./pant-pro.html">
+       <div class="pri-de"><h6>Price ₹300 - ₹600</h6> <h2>Pants section</h2></div>
+      </a>
+    </div>
+
+    <div class="item">
+      <a href="./tie-pro.html">
+        <img class="xyz" data-alt-src="./product/pro-33.png" src="product/pro-3.png" />
+      </a>
+        <!-- <p><a href="tie-pro.html">view</a></p>  -->
+        <a href="./tie-pro.html">
+          <div class="pri-de"><h6>Price ₹300 - ₹600</h6> <h2>Tie section</h2></div>
+        </a>
+       </div>
+
+     
+</div>
+  </div>
+
+</div>
+
+
+<!-- image-slider -->
+
+<div class="com-space mt-2 pt-1">
+  <div class="container">
+    <h4 class="text-center">Create your uniqueness</h4>
+    <div class="row">
+      <div class="col-md-7">
+        <div class=" col-md-8" style="margin:13px auto">
+          <div class="col-wrap">
+              <div class="ico-box bg-gray-light has-radius-medium">
+                  <div class="icon">
+                    <img src="./DRESS-CO.svg" style="width:100px;" alt="">
+                  </div>
+                  <h3><a href="#">Enhance Your Uniform</a></h3>
+                  <!-- <div class="des">
+                      <p>Auersla, conse ctetur adipis icing lorem ipsum dolor sit amet</p>
+                  </div> -->
+                  <div class="link-holder">
+                      <a class="extra-link" href="#">VIEW MORE</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class=" col-md-8" style="margin:13px auto">
+          <div class="col-wrap">
+              <div class="ico-box bg-gray-light has-radius-medium">
+                  <div class="icon">
+                    <img src="./DRESS-plain.svg" style="width:100px;" alt="">
+                  </div>
+                  <h3><a href="#">Your Uniform</a></h3>
+                  <!-- <div class="des">
+                      <p>Auersla, conse ctetur adipis icing lorem ipsum dolor sit amet</p>
+                  </div> -->
+                  <div class="link-holder">
+                      <a class="extra-link" href="#">VIEW MORE</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      <!-- <div class="col-md-6"><img class="cre-img" src="https://vijay-25-gv.github.io/acchoos/image/saree---.jpg" alt=""></div> -->
+      <div class="col-md-4">
+        <video src="./Edit 2.mp4" class="cre-img" autoplay loop muted ></video>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- why us slider=========================== -->
+<!-- <div class=" com-space position-relative mt-1 pt-1">
+  <div style="background-color: rgb(240, 183, 147);
+  position: absolute;
+  top: 27%;
+  right: 40%;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  z-index: -1111;"></div>
+  <div class="t-head1 ">
+ <h4 class="text-center">why us </h4>
+<div class="slider-container ">
+
+<div id="slides">
+  <span class="click-down"></span>
+  <ul class="roller ro1">
+    <li><img src="./demo-dre.png" alt=""></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<ul id="steps" class="roller">
+  <li data-no="0">01</li>
+  <li data-no="1">02</li>
+  <li data-no="2">03</li>
+  <li data-no="3">04</li>
+  <li data-no="4">05</li>
+</ul>
+<div id="titles">
+  <ul class="roller">
+    <li>
+      <h2>First</h2>
+      <h2>Slide</h2>
+      <p>First, use the up and down arrow keys to navigate. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor consectetur, rerum dignissimos provident modi corporis molestiae earum dolorem sint aut, eum debitis natus ad officia facere illo nulla eos omnis reprehenderit ipsa nobis beatae! Hic saepe placeat a et tempora nulla cumque quam eligendi architecto asperiores repellendus consequuntur, enim cum.</p>
+    </li>
+    <li>
+      <h2>Second</h2>
+      <h2>Slide</h2>
+      <p>Secondly, use the up and down arrow keys to navigate.</p>
+    </li>
+    <li>
+      <h2>Third</h2>
+      <h2>Slide</h2>
+      <p>Thirdly, use the up and down arrow keys to navigate.</p>
+    </li>
+    <li>
+      <h2>Fourth</h2>
+      <h2>Slide</h2>
+      <p>Fourthly, use the up and down arrow keys to navigate.</p>
+    </li>
+    <li>
+      <h2>Fifth</h2>
+      <h2>Slide</h2>
+      <p>Lastly, use the up and down arrow keys to navigate.</p>
+    </li>
+  </ul>
+</div>
+
+</div>
+</div>
+</div> -->
+<!-- </div> -->
+<!-- why us slider=========================== -->
+
+
+
+
+<!-- contact========================= -->
+
+<!-- <div class="container-fluid com-space contact-foo" >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 d-flex cont-ad" >
+        <div class="add-di">
+          <h6>Visit the shop</h6>
+        <p>No 14/16, Gurunathan Street,
+          Pattabiraman Saalai Road,
+          Opp to srinivasa Perumal Koil, Tennur,
+          Trichy – 620017.</p>
+          <a href="#" class="dir-l">Map Direction <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+          <div class="social-icon">
+            <a href="#"><img src="./image/icon/instagram (3).png" alt=""></a>
+            <a href="#"><img src="./image/icon/facebook-circular-logo.png" alt=""></a>
+            <a href="#"><img src="./image/icon/youtube (1).png" alt=""></a>
+            <a href="#"><img src="./image/icon/whatsapp (1).png" alt=""></a>
+          </div>
+      </div>
+      <div class="col-md-6 HIR-SEC">
+        <h4>Hiring</h4>
+
+        <h1>Join our team</h1>
+        <div class="drop_box">
+          <header>
+            <h4>upload your resume here</h4>
+          </header>
+          <p>Files Supported: PDF, TEXT, DOC , DOCX</p>
+          <input type="file" hidden accept=".doc,.docx,.pdf" id="fileID" style="display:none;">
+          <button class="btn">Choose File</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- contact========================= -->
+
+<!-- footer -->
+
+<div class="container-fluid ">
+  <div class="container footer">
+<p>© <script> document.write(new Date().getFullYear());</script> The REAL. . All Rights Reserved | Design by Z </p>
+<p>*Teams and conditions </p>
+</div>
+</div>
+<!-- footer -->
+
+
+
+<!-- <script src="https://use.fontawesome.com/releases/vVERSION/js/all.js" data-auto-replace-svg="nest"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+<script src="./script.js"></script>
+<script src="./jquery-2.1.4.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+  //   direction: "vertical",
+    slidesPerView: 1,
+    spaceBetween: 30,
+    mousewheel: true,
+    autoplay: {
+ delay: 5000,
+},
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      type: 'fraction',
+    },
+    loop: true,
+//       effect: 'fade',
+//   fadeEffect: {
+//     crossFade: true
+//   },
+
+effect: 'flip',
+flipEffect: {
+  slideShadows: false,
+},
+
+
+
+  });
+</script>
 
 <script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
+  var sourceSwap = function () {
+var $this = $(this);
+var newSource = $this.data('alt-src');
+$this.data('alt-src', $this.attr('src'));
+$this.attr('src', newSource);
+}
+
+$(function () {
+$('img.xyz').hover(sourceSwap, sourceSwap);
+});
+
+
+</script>
+
+
+<script type="text/javascript">
+    $('.owl-carousel').owlCarousel({
+        loop: true, 
+        margin: 20, 
+        nav: false,
+        autoplay: true, 
+        autoplayTimeout: 5500,
+        stagePadding: 10,  
+        dots: false,
+        responsive: {
+            0: {
+                items: 2
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
+    });
+</script>
+
+<!-- why us slider -->
+<script>
+  (function () {
+  var Application, Utils;
+
+  window.DEMO = window.DEMO || {};
+
+  Utils = {
+    'transform': Modernizr.prefixed('transform').replace(/([A-Z])/g, (str, m1) => {
+      return '-' + m1.toLowerCase();
+    }).replace(/^ms-/, '-ms-'),
+    'translate': (x, y) => {
+      var tran, vals;
+      tran = Modernizr.csstransforms3d ? 'translate3d' : 'translate';
+      vals = Modernizr.csstransforms3d ? '(' + x + ', ' + y + ', 0)' : '(' + x + ', ' + y + ')';
+      return tran + vals;
+    } };
+
+
+  Application = class Application {
+    constructor() {
+      this.onClick = this.onClick.bind(this);
+      this.previous = this.previous.bind(this);
+      this.next = this.next.bind(this);
+      this.update = this.update.bind(this);
+      DEMO.utils = Utils;
+      this.$doc = $(document);
+      this.$roller = $('.roller');
+      this.$step = $('#steps li');
+      this.$title = $('#titles li');
+      this.min = 0;
+      this.max = this.$step.length - 1;
+      this.active_index = 0;
+      this.$step.eq(this.active_index).addClass('active');
+      this.$title.eq(this.active_index).addClass('active');
+      this.observe();
     }
-  </script>
+
+    observe() {
+      return this.$doc.on('mousewheel click', this.onClick);
+    }
+
+    onClick(e) {
+      if(e.target.classList.contains('click-down')){
+        if(this.active_index < this.max){
+          this.active_index++;
+          return this.update();
+        }
+      }
+      if(e.target.getAttribute('data-no') <= this.max){          
+          this.active_index = e.target.getAttribute('data-no');
+          return this.update();
+         }
+      
+      if (e.originalEvent.wheelDelta / 120 > 0) {        
+        this.previous();
+      }
+      if (e.originalEvent.wheelDelta / 120 < 0) {        
+        return this.next();
+      }
+      
+    }
+
+    previous() {
+      if (this.active_index > this.min) {
+        this.active_index--;
+        return this.update();
+      }
+    }
+
+    next() {
+      if (this.active_index < this.max) {
+        this.active_index++;
+        return this.update();
+      }
+    }
+
+    update() {
+      var y;
+      y = -(this.active_index * 100);
+      this.$roller.css(DEMO.utils.transform, DEMO.utils.translate(0, `${y}%`));
+      this.$step.removeClass('active');
+      this.$title.removeClass('active');
+      this.$step.eq(this.active_index).addClass('active');
+      return this.$title.eq(this.active_index).addClass('active');
+    }};
+
+
+
+  $(function () {
+    return DEMO.instance = new Application();
+  });
+
+}).call(this);
+
+//# sourceURL=coffeescript
+</script>
+
+
+<script>
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+          // Load cart data from localStorage
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          const cartItemCount = document.getElementById("cartItemCount");
+
+          cartItemCount.textContent = cart.length;
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          // renderCart();
+    
+
+  // }
+          });
+
+          </script>
+
 </body>
 </html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <style>
+        /* Add your CSS styling here */
+        .cart-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container navbar-colour" >
+          <a class="navbar-brand" href="./index.html">
+            <img src="./image/chumma oru logo.png" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
+                <path
+                      class="line top"
+                      d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                <path
+                      class="line middle"
+                      d="m 30,50 h 40" />
+                <path
+                      class="line bottom"
+                      d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+              </svg>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                       <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                   <a class="nav-link" href="./customiz.html">Customise</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </li> -->
+                   
+                    <li class="nav-item">
+                      <a class="nav-link" herf="./index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Contact Us</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="search-and-icons">
+             
+              <div class="user-icons d-flex mb-2">
+                <div class="login"><a href="#">Login</a></div>
+                <div class="cart"> <span id="cartItemCount">0</span><a href="./cart.html"><i class="fa fa-cart-shopping"></i></a></div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </nav>
+
+<!-- header============================================================= -->
+
+<div class="dir">home > Cart</div>
+
+    <div class="container" id="cartItems">
+        <!-- Cart items will be displayed here -->
+    </div>
+    <!-- <button id="addToCheckout">Add to Checkout</button> -->
+
+    <div class="cart">
+        <!-- <p>Total Items: <span id="cartItemCount">0</span></p> -->
+        <p>Total: $<span id="cartTotal">0</span></p>
+    </div>
+
+    <div class="24"></div>
+    <div id="pri"></div>
+
+
+
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+    <script src="./script.js"></script>
+    <script src="./jquery-2.1.4.min.js"></script>
+
+
+    <script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+        // Load cart data from localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        const cartItemsContainer = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+        const cartItemCount = document.getElementById("cartItemCount");
+    
+        // Function to render cart items and update cart total
+        function renderCart() {
+            cartItemsContainer.innerHTML = "";
+            let total = 0;
+  
+cart.forEach((product, index) => {
+    const cartItemDiv = document.createElement("div");
+    cartItemDiv.className = "c-inner";
+
+    // Create an image element inside the c-inner div
+    const imageDiv = document.createElement("div");
+    imageDiv.className = "col-md-2 text-center";
+    const image = document.createElement("img");
+    image.src = `${product.img}`;
+    image.alt = "";
+    imageDiv.appendChild(image);
+    cartItemDiv.appendChild(imageDiv);
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove Item";
+    removeButton.addEventListener("click", () => removeItem(index));
+    imageDiv.appendChild(removeButton);
+
+    // Create a div with class "col-md-7"
+    const detailsDiv = document.createElement("div");
+    detailsDiv.className = "col-md-7"; // Add the col-md-7 class
+    cartItemDiv.appendChild(detailsDiv); // Append it to the cartItemDiv
+
+    // Create a div with class "c-detail" inside col-md-7
+    const cDetailDiv = document.createElement("div");
+    cDetailDiv.className = "c-detail"; // Add the c-detail class
+    detailsDiv.appendChild(cDetailDiv); // Append it to detailsDiv
+
+    // Create h4 and h5 elements inside c-detail div
+    const productName = document.createElement("h4");
+    productName.textContent = `${product.name}`;
+    cDetailDiv.appendChild(productName);
+
+    const productPrice = document.createElement("h5");
+    productPrice.textContent = `${product.subname}`;
+    cDetailDiv.appendChild(productPrice);
+
+if (product.id < 10 ){
+
+          // Create a div with class "c-count" below c-detail div
+        const cCountDiv = document.createElement("div");
+    cCountDiv.className = "c-count"; // Add the c-count class
+    detailsDiv.appendChild(cCountDiv); // Append it to detailsDiv
+
+  // Create labels for the input fields
+  const quantityLabel = document.createElement("label");
+        quantityLabel.textContent = "28 ";
+        cCountDiv.appendChild(quantityLabel);
+
+    // Create an input field for each product
+    const quantityInput = document.createElement("input");
+    quantityInput.type = "number";
+    quantityInput.value = product.quantity || 1; // Default quantity is empty
+    cCountDiv.appendChild(quantityInput);
+
+    const descriptionLabel = document.createElement("label");
+        descriptionLabel.textContent = "30 ";
+        cCountDiv.appendChild(descriptionLabel);
+    // Create an input field for description
+    const descriptionInput = document.createElement("input");
+    descriptionInput.type = "number";
+    descriptionInput.value = product.description || 0; // Default description is empty
+    cCountDiv.appendChild(descriptionInput);
+
+    const descriptionLabel2 = document.createElement("label");
+        descriptionLabel2.textContent = "32 ";
+        cCountDiv.appendChild(descriptionLabel2);
+
+    const descriptionInput2 = document.createElement("input");
+    descriptionInput2.type = "number";
+    descriptionInput2.value = product.description2 || 0; // Default description is empty
+    cCountDiv.appendChild(descriptionInput2);
+
+    const descriptionLabel3 = document.createElement("label");
+        descriptionLabel3.textContent = "34 ";
+        cCountDiv.appendChild(descriptionLabel3);
+
+    const descriptionInput3 = document.createElement("input");
+    descriptionInput3.type = "number";
+    descriptionInput3.value = product.description3 || 0; // Default description is empty
+    cCountDiv.appendChild(descriptionInput3);
+
+    const addButton = document.createElement("button");
+    addButton.textContent = "Add";
+    addButton.addEventListener("click", () => addQuantity(index, quantityInput, descriptionInput, descriptionInput2, descriptionInput3));
+    cCountDiv.appendChild(addButton);
+
+     // Add the col-md-3 div right after col-md-7
+     const totalDiv = document.createElement("div");
+        totalDiv.className = "col-md-3 c-total";
+
+        // Add the specified HTML content inside the col-md-3 c-total div
+        totalDiv.innerHTML = `
+            <h3>TOTAL</h3>
+            <p> 28= <span class="pro-de28">240</span> X <span id="28-pri">${product.quantity}</span></p>
+            <p> 30= <span class="pro-de30">350</span> X <span id="30-pri">${product.description}</span></p>
+            <p> 32= <span class="pro-de32">450</span> X <span id="32-pri">${product.description2}</span></p>
+            <p> 34= <span class="pro-de34">550</span> X <span id="34-pri">${product.description3}</span></p>
+            <h6>total <span class="tol-price">00</span>$</h6>
+        `;
+
+        const addToCheckoutButton = document.createElement("button");
+        addToCheckoutButton.textContent = "Checkout  >>";
+        addToCheckoutButton.addEventListener("click", () => addToCheckout(index));
+        totalDiv.appendChild(addToCheckoutButton);
+        cartItemDiv.appendChild(totalDiv);
+}
+
+// pant===============================================================
+
+
+if (product.id > 10 ){
+
+// Create a div with class "c-count" below c-detail div
+const cCountDiv = document.createElement("div");
+cCountDiv.className = "c-count"; // Add the c-count class
+detailsDiv.appendChild(cCountDiv); // Append it to detailsDiv
+
+// Create labels for the input fields
+const quantityLabel = document.createElement("label");
+quantityLabel.textContent = "28 ";
+cCountDiv.appendChild(quantityLabel);
+
+// Create an input field for each product
+const quantityInput = document.createElement("input");
+quantityInput.type = "number";
+quantityInput.value = product.quantity || 1; // Default quantity is empty
+cCountDiv.appendChild(quantityInput);
+
+const descriptionLabel = document.createElement("label");
+descriptionLabel.textContent = "30 ";
+cCountDiv.appendChild(descriptionLabel);
+// Create an input field for description
+const descriptionInput = document.createElement("input");
+descriptionInput.type = "number";
+descriptionInput.value = product.description || 0; // Default description is empty
+cCountDiv.appendChild(descriptionInput);
+
+// const descriptionLabel2 = document.createElement("label");
+// descriptionLabel2.textContent = "32 ";
+// cCountDiv.appendChild(descriptionLabel2);
+
+// const descriptionInput2 = document.createElement("input");
+// descriptionInput2.type = "number";
+// descriptionInput2.value = product.description2 || 0; // Default description is empty
+// cCountDiv.appendChild(descriptionInput2);
+
+// const descriptionLabel3 = document.createElement("label");
+// descriptionLabel3.textContent = "34 ";
+// cCountDiv.appendChild(descriptionLabel3);
+
+// const descriptionInput3 = document.createElement("input");
+// descriptionInput3.type = "number";
+// descriptionInput3.value = product.description3 || 0; // Default description is empty
+// cCountDiv.appendChild(descriptionInput3);
+
+const addButton = document.createElement("button");
+addButton.textContent = "Add";
+addButton.addEventListener("click", () => addQuantity(index, quantityInput, descriptionInput, descriptionInput2, descriptionInput3));
+cCountDiv.appendChild(addButton);
+
+// Add the col-md-3 div right after col-md-7
+const totalDiv = document.createElement("div");
+totalDiv.className = "col-md-3 c-total";
+
+// Add the specified HTML content inside the col-md-3 c-total div
+totalDiv.innerHTML = `
+  <h3>TOTAL</h3>
+  <p> 28= <span class="pro-de28">240</span> X <span id="28-pri">${product.quantity}</span></p>
+  <p> 30= <span class="pro-de30">350</span> X <span id="30-pri">${product.description}</span></p>
+  <p> 32= <span class="pro-de32">450</span> X <span id="32-pri">${product.description2}</span></p>
+  <p> 34= <span class="pro-de34">550</span> X <span id="34-pri">${product.description3}</span></p>
+  <h6>total <span class="tol-price">00</span>$</h6>
+`;
+
+const addToCheckoutButton = document.createElement("button");
+addToCheckoutButton.textContent = "Checkout  >>";
+addToCheckoutButton.addEventListener("click", () => addToCheckout(index));
+totalDiv.appendChild(addToCheckoutButton);
+cartItemDiv.appendChild(totalDiv);
+}
+
+
+         // Create an "Add to Checkout" button
+
+
+    // Create an "Add" button to add quantities
+  
+
+   
+
+  
+
+cartItemsContainer.appendChild(cartItemDiv);
+
+    // Calculate the total price for the current product
+    const quantityTotal = 240 * (product.quantity || 1);
+        const descriptionTotal = 340 * (product.description || 0);
+        const descriptionTotal2 = 440 * (product.description2 || 0);
+        const descriptionTotal3 = 540 * (product.description3 || 0);
+        const totalProductPrice = quantityTotal + descriptionTotal + descriptionTotal2 + descriptionTotal3;
+
+        // Update the total price within the product section
+        const totalElement = document.querySelector(`#cartItems .c-inner:nth-child(${index + 1}) .c-total .tol-price`);
+        totalElement.textContent = totalProductPrice;
+
+        // Add the total price of the current product to the overall total
+        total += totalProductPrice;
+});
+    
+const totalElement = document.querySelector(".tol-price");
+            // Update cart count and total
+            cartItemCount.textContent = cart.length;
+            cartTotal.textContent = total; // Update the overall cart total
+
+
+    
+            // Save updated cart data to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    
+        // Function to add quantity for a product
+        // Function to add quantity for a product
+function addQuantity(index, quantityInput, descriptionInput, descriptionInput2, descriptionInput3) {
+    const quantity = parseInt(quantityInput.value);
+    const description = parseInt(descriptionInput.value); // Get the description input value
+    const description2 = parseInt(descriptionInput2.value); // Get the second description input value
+    const description3 = parseInt(descriptionInput3.value); // Get the third description input value
+
+    
+    
+//     // const pricdquan = document.getElementById("28-pri").innerHTML= quantity;
+//     // console.log(pricdquan)
+
+//     const id28PriSpan = document.getElementById("28-pri");
+
+// // Add an input event listener to the quantity input field
+// document.addEventListener("input", function() {
+    
+//     console.log("get it")
+//     // Update the content of the 28-pri span with the quantity
+//     if (!isNaN(quantity)) {
+//         id28PriSpan.textContent = quantity;
+//     }
+// });
+
+
+  // Get the 28-pri span element
+  
+  // Retrieve the quantity value from localStorage
+  // const storedQuantity = localStorage.getItem("cart");
+  
+//   let storedQuantity = JSON.parse(localStorage.getItem("cart")) || [];
+  
+//   const id28PriSpan = document.getElementById("28-pri");
+
+
+// storedQuantity.forEach((product, index) => {
+
+
+//     console.log(quantity)
+
+// // Check if the stored quantity is not null and is a valid number
+// // if (storedQuantity !== null && !isNaN(storedQuantity)) {
+//     // Update the content of the 28-pri span with the retrieved quantity
+//     id28PriSpan.textContent = `${product.quantity}`;
+// } else {
+//     // If the quantity is not found in localStorage or is not valid, set a default value
+//     id28PriSpan.textContent = "00"; // Default value
+// }
+
+// });
+
+    if (!isNaN(quantity) && quantity > 0) {
+        // if (!cart[index].quantity) {
+        //     cart[index].quantity = 0;
+        // }
+        cart[index].quantity = quantity; // Set the quantity to the input value
+
+        // Set the descriptions for the product
+        cart[index].description = description;
+        cart[index].description2 = description2;
+        cart[index].description3 = description3;
+
+        
+
+        renderCart();
+    }
+}
+
+    
+        // Function to remove an item from the cart
+        function removeItem(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+    
+        
+
+
+
+
+        // Initial render
+        renderCart();
+
+
+
+
+
+
+function addToCheckout(index) {
+    const product = cart[index];
+
+    // Retrieve existing checkout data from localStorage or initialize it as an empty array
+    let checkoutData = JSON.parse(localStorage.getItem("checkout")) || [];
+
+    // Make sure checkoutData is an array
+    if (!Array.isArray(checkoutData)) {
+        checkoutData = [];
+    }
+
+    // Add the product details to the checkout data
+    checkoutData.push(product);
+
+    // Save the updated checkout data to localStorage
+    localStorage.setItem("checkout", JSON.stringify(checkoutData));
+    
+    // You can also remove the product from the cart if needed
+    removeItem(index);
+
+    // Update the cart display
+    renderCart();
+}
+
+
+
+});
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine and Store Images</title>
+</head>
+<body>
+    <img class="top-img" src="./image/top/model-half.png" alt="" id="product-image">
+    <img class="body-img" src="./image/bod/empty.png" alt="">
+    <img class="collar-img" src="./image/bod/empty.png" alt="">
+    <img class="button-img" src="./image/low/empty.png" alt="">
+    <img class="button-color" src="./image/button/empty.png" alt="">
+    <img class="tie-img" src="./image/tie/empty.png" alt="">
+    <img class="pant-img" src="./image/pan/pant.png" alt="">
+    <button id="addToCartButton">Add to Cart</button>
+    <canvas id="combinedCanvas" style="display: none;"></canvas>
+
+    <script>
+        // Get references to the HTML elements
+        const productImage = document.getElementById('product-image');
+        const canvas = document.getElementById('combinedCanvas');
+        const ctx = canvas.getContext('2d');
+        const addToCartButton = document.getElementById('addToCartButton');
+
+        // Function to combine and store the image in localStorage
+        function addToCart() {
+            // Clear the canvas
+            canvas.width = productImage.width;
+            canvas.height = productImage.height;
+
+            // Draw the images onto the canvas
+            ctx.drawImage(productImage, 0, 0);
+
+            const otherImages = document.querySelectorAll('img:not(#product-image)');
+            otherImages.forEach((img, index) => {
+                ctx.drawImage(img, 0, 0);
+            });
+
+            // Convert the canvas content to a data URL
+            const combinedImageData = canvas.toDataURL('image/jpeg');
+
+            // Create or retrieve the "cart" array from localStorage
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Add the combined image data to the cart array
+            cart.push(combinedImageData);
+
+            // Store the updated cart array in localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Optional: Provide feedback to the user
+            alert('Image added to cart!');
+        }
+
+        // Add a click event listener to the "Add to Cart" button
+        addToCartButton.addEventListener('click', addToCart);
+    </script>
+</body>
+</html>

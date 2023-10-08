@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CU-DR-2</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+
+    <style>
+        #products{
+            --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+
+        }
+        .hidden {
+  display: none;
+}
+        #dark-ba{
+            position: fixed;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+            backdrop-filter: blur(30px);
+        }
+        #cartItems{
+            width: 50%;
+    position: fixed;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    /* background-color: white; */
+    /* border: 1px solid rgb(224, 222, 222); */
+    padding: 10px;
+        }
+
+        .cart-item{
+                background-color: white;
+            padding:20px;
+            text-align: center;
+            display: flex;
+            border: 1px solid rgb(208, 207, 207);
+            border-radius: 10px;
+    margin: 1rem 0;
+        }
+        .cart-item img{
+            width: 30%;
+        }
+        .cart-item a{
+                display: block;
+        }
+        .cart-item-inner{
+            text-align: start;
+            padding-top: 1rem;
+            border-left: 1px solid rgb(208, 207, 207);
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <div style="background-color: rgb(240, 183, 147);
+    position: absolute;
+    top: 24%;
+    right: 20%;
+    height: 300px;
+    width: 150px;
+    border-radius: 50%;
+    z-index: -1111;"></div>
+<div class="t-head">
+<div class="bg-grey">
+     -->
+    <!-- header============================================================= -->
+    
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container navbar-colour" >
+          <a class="navbar-brand" href="./index.html">
+            <img src="./image/chumma oru logo.png" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
+                <path
+                      class="line top"
+                      d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+                <path
+                      class="line middle"
+                      d="m 30,50 h 40" />
+                <path
+                      class="line bottom"
+                      d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+              </svg>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./customiz.html">Customise</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </li> -->
+                   
+                    <li class="nav-item">
+                      <a class="nav-link" herf="./index.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link">Contact Us</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="search-and-icons">
+             
+              <div class="user-icons d-flex mb-2">
+                <div class="login"><a href="#">Login</a></div>
+                <div class="cart"> <span id="cartItemCount">0</span><a href="./cart.html"><i class="fa fa-cart-shopping"></i></a></div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </nav>
+
+<!-- header============================================================= -->
+
+<div class="dir">home ❯ shirt
+    <br>
+    <a href="./pant-pro.html">❯ pant & shorts</a>
+    <a href="tie-pro.html">❯ tie</a>
+    <a href="#">❯ Blazer</a>
+</div>
+
+<!-- product============================================================ -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 fl-slide">
+    
+            <div class="col-filter">
+                <h3>Color</h3>
+                <input type="checkbox" class="colorCheckbox sb-checkbox__input"  id="check1" name="check1" value="white"> 
+                <label  class="sb-checkbox__label sb-checkbox__label--green" for="check1">White
+                </label>
+
+                <input type="checkbox" class="colorCheckbox sb-checkbox__input"  id="check2" name="check2" value="red"> 
+                <label class="sb-checkbox__label sb-checkbox__label--green" for="check2">red
+                </label>
+
+                <input type="checkbox" class="colorCheckbox sb-checkbox__input"  id="check3" name="check3" value="yellow"> 
+                <label class="sb-checkbox__label sb-checkbox__label--green" for="check3">Yellow
+                </label>
+
+                <input type="checkbox" class="colorCheckbox sb-checkbox__input"  id="check4" name="check4" value="blue"> 
+                <label class="sb-checkbox__label sb-checkbox__label--green" for="check4">Blue 
+                </label>
+                <!-- <div class="sb-checkbox"> -->
+                    <!-- <input type="checkbox" class="sb-checkbox__input" id="check1" name="check1">
+                    <label class="sb-checkbox__label sb-checkbox__label--green" for="check1"></label> -->
+                  <!-- </div> -->
+            </div>
+            
+            
+           <div class="siz-filter">
+            <h3>Size</h3>
+            <input type="checkbox" class="typeCheckbox  sb-checkbox__input"  id="check5" name="check5" value="Half Hand"> 
+            <label class="sb-checkbox__label sb-checkbox__label--green" for="check5">Half Hand
+            </label>
+
+            <input type="checkbox" class="typeCheckbox  sb-checkbox__input"  id="check6" name="check6" value="Full Hand">
+            <label class="sb-checkbox__label sb-checkbox__label--green" for="check6"> Full Hand
+            </label>
+            
+           </div>
+            
+
+           <div class="pri-filter">
+             <h3>price</h3>
+            <!-- <label for="priceRange">Price Range:</label> -->
+            <input type="range" id="priceRange" min="250" max="600" value="600"><br>
+            <span id="priceValue">₹250</span> - <span id="maxPrice">600</span>
+        </div>
+           
+            
+            </div>
+            <div class="col-md-9">
+            <div id="products">
+                <!-- Product data will be displayed here -->
+            </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div id="dark-ba" class="hidden">
+    <div id="close"><img src="./image/close.png" alt=""></div>
+    <div id="cartItems" class="row">
+        <!-- Cart items will be displayed here -->
+    </div>
+</div>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+      <p>This product is already in your cart.</p>
+      <button id="close-popup" class="close-popup-button">Close</button>
+    </div>
+  </div>
+  
+
+  <!-- Add this HTML structure to your page -->
+<div id="fabric-popup" class="col-md-7 ">
+    <div id="fabric-popup-content" class="cl-side col-md-7">
+        <!-- Product details will be displayed here -->
+    </div>
+    <img id="close-fabric-popup" class="close-popup" src="./image/close.png" alt="">
+</div>
+
+<!-- <div class="col-md-8 cl-side">
+       
+    <div class="row">
+     <div class="col-md-6 cl-img">
+         <img src="./dummy-img/slider/s1.jpg" alt="">
+     </div>
+
+     <div class="cl-detail col-md-6">
+         <h4>title</h4>
+         <h5>Lorem ipsum dolor sit amet.</h5>
+
+         <div class="cl-desc">
+             <h6>title</h6>
+             <p></p>
+         </div>
+     </div>
+    </div>
+ </div> -->
+
+
+<!-- product============================================================ -->
+
+
+
+
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js'></script>
+<script src="./script.js"></script>
+<script src="./jquery-2.1.4.min.js"></script>
+
+<script>
+    const change = src => {
+    document.getElementById('main').src = src
+}
+</script>
+
+<script>
+  
+
+document.addEventListener("DOMContentLoaded", function () {
+  
+
+    const productsData =  [ 
+{
+id:1,
+name:"Full Hand",
+subname:'Full Sleve Shirt',
+img: "./product/full.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/model-full.png",
+amt:400,
+matrial: "cotton",
+color:"white"
+},
+
+{
+id:2,
+name:"Full Hand",
+subname:'Full Sleve Red Shirt',
+img: "./product/full-red.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/red/model-full.png",
+amt:410,
+matrial: "cotton",
+color:"red"
+},
+{
+id:3,
+name:"Full Hand",
+subname:'Full Sleve Yellow Shirt',
+img: "./product/full-yellow.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/yellow/model-full.png",
+amt:420,
+matrial: "cotton",
+color: "yellow"
+},
+{
+id:4,
+name:"Full Hand",
+subname:'Full Sleve Blue Shirt',
+img: "./product/full-blue.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-full.png",
+amt:390,
+matrial: "cotton",
+color:"blue"
+},
+{
+id:5,
+name:"Full Hand",
+subname:'Full Sleve  Shirt',
+img: "./product/full-blue.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-full.png",
+amt:430,
+matrial: "Semi cotton",
+color:"blue"
+},
+{
+id:6,
+name:"Half Hand",
+subname:'Half Sleve Shirt',
+img: "./product/pro-1.png   ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/model-half.png",
+amt:410,
+matrial: "cotton",
+color:"white"
+},
+{
+id:7,
+name:"Half Hand",
+subname:'Half Sleve Red Shirt',
+img: "./product/half-red.png    ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/red/model-half.png",
+amt:400,
+matrial: "cotton",
+color:"red"
+},
+{
+id:8,
+name:"Half Hand",
+subname:'Half Sleve Yellow Shirt',
+img: "./product/half-yellow.png ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/yellow/model-half.png",
+amt:400,
+matrial: "cotton",
+color:"yellow"
+},
+{
+id:9,
+name:"Half Hand",
+subname:'Half Sleve Blue Shirt',
+img: "./product/half-blue.png   ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-half.png",
+amt:430,
+matrial: "cotton",
+color:"blue"
+},
+    ];
+
+     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const productsContainer = document.getElementById("products");
+        const colorCheckboxes = document.querySelectorAll(".colorCheckbox");
+        const typeCheckboxes = document.querySelectorAll(".typeCheckbox");
+        const priceRange = document.getElementById("priceRange");
+        const priceValue = document.getElementById("priceValue");
+        const maxPriceSpan = document.getElementById("maxPrice");
+        const cartItemCount = document.getElementById("cartItemCount");
+        const cartItems = document.getElementById("cartItems");
+        const modal = document.getElementById("dark-ba");
+
+
+        // Function to open the fabric details popup
+function openFabricPopup(product) {
+    const fabricPopup = document.getElementById("fabric-popup");
+    const fabricPopupContent = document.getElementById("fabric-popup-content");
+
+    // Display the product details in the popup
+    fabricPopupContent.innerHTML = `
+    <div class="row">
+        <div class="col-md-6 cl-img">
+            <!-- All images with side view -->
+       <div class="row">
+        <div class="side_view col-3">
+            <img src="${product.img}" onclick="change(this.src)">
+            <img src="${product.s2}" onclick="change(this.src)">
+            <img src="${product.s3}" onclick="change(this.src)">
+        </div>
+        <div class="main_view col-9">
+            <img src="${product.img}" id="main" alt="IMAGE">
+        </div>
+        </div>
+  
+       
+    </div>
+    <div class="cl-detail col-md-6">
+        <h4>${product.subname} - Fabric Details</h4>
+        <h5><strong>Material:</strong> ${product.matrial}</h5>
+        <h5><strong>Color:</strong> ${product.color}</h5>
+        <div class="cl-desc">
+        <h3><d>Detail</d></h3>
+        <ul>
+           <li> Maxfort School Uniform Shirt</li>
+<li>Two Front Pockets</li>
+<li>Finest Fabric Quality for Comfortability</li>
+<li>Tailored by Masters for Perfect Fitting</li>
+<li>Durable Fabric for Daily Wear</li>
+<li>Care Instructions: Machine Wash Only</li>
+<li>30 Days Return/Refund Guarantee </li>
+<li>Made In India</li>
+            </ul>
+    </div>
+        </div>
+       </div>
+    `;
+
+    fabricPopup.style.display = "block";
+}
+
+// Function to close the fabric details popup
+function closeFabricPopup() {
+    const fabricPopup = document.getElementById("fabric-popup");
+    fabricPopup.style.display = "none";
+}
+
+       
+// Function to open the popup
+function openPopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "block";
+}
+
+// Function to close the popup
+function closePopup() {
+  const popup = document.getElementById("popup");
+  popup.style.display = "none";
+}
+
+        // Function to update the cart count
+        function updateCartCount() {
+            cartItemCount.textContent = cart.length;
+        }
+
+        // Function to render products based on filter criteria
+        function renderProducts() {
+    const selectedColors = Array.from(colorCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    const selectedTypes = Array.from(typeCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    const minPrice = 0;
+    const maxPrice = parseInt(priceRange.value);
+
+    const filteredProducts = productsData.filter(product => {
+        return (
+            ((selectedColors.length === 0 || selectedColors.includes(product.color)) &&
+            (selectedTypes.length === 0 || selectedTypes.includes(product.name))) &&
+            product.amt >= minPrice &&
+            product.amt <= maxPrice
+        );
+    });
+
+    productsContainer.innerHTML = "";
+
+    if (filteredProducts.length === 0) {
+        const noProductMessage = document.createElement("p");
+        noProductMessage.textContent = "No products in this price range";
+        productsContainer.appendChild(noProductMessage);
+    } else {
+        filteredProducts.forEach(product => {
+    const productDiv = document.createElement("div");
+    productDiv.className = "product";
+
+    // Create a container div for the image section
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "product-image-container";
+
+    const productImage = document.createElement("img");
+    productImage.src = product.img;
+    productImage.addEventListener("click", () => openFabricPopup(product));
+    imageContainer.appendChild(productImage);
+
+
+    // Append the image container to the product div
+    productDiv.appendChild(imageContainer);
+
+    const productName = document.createElement("h3");
+    productName.textContent = ` ${product.subname}`;
+    productDiv.appendChild(productName);
+
+    const productMaterial = document.createElement("h4");
+    productMaterial.textContent = `Material: ${product.matrial}`;
+    productDiv.appendChild(productMaterial);
+
+    // const productColor = document.createElement("h5");
+    // productColor.textContent = `Color: ${product.color}`;
+    // productDiv.appendChild(productColor);
+
+    const productPrice = document.createElement("p");
+    productPrice.textContent = `Price: ₹${product.amt}`;
+    productDiv.appendChild(productPrice);
+
+    const viewFabricButton = document.createElement("button");
+    viewFabricButton.textContent = "View Detail";
+    viewFabricButton.className = "view-fabric";
+    viewFabricButton.addEventListener("click", () => openFabricPopup(product));
+    productDiv.appendChild(viewFabricButton);
+
+    const addToCartButton = document.createElement("button");
+    addToCartButton.textContent = "Add to Cart";
+    addToCartButton.className = "add-to-cart";
+    addToCartButton.addEventListener("click", () => addToCart(product));
+    productDiv.appendChild(addToCartButton);
+
+    // Create the "product-inner" div
+    const productInnerDiv = document.createElement("div");
+    productInnerDiv.className = "product-inner col-md-3";
+    productInnerDiv.appendChild(productDiv);
+
+    productsContainer.appendChild(productInnerDiv);
+});
+
+}
+
+            // Update cart count
+            
+            updateCartCount();
+            renderCart()
+        }
+
+        // Function to add a product to the cart
+      function addToCart(product) {
+    // Check if the product is already in the cart
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if (existingProduct) {
+        // Product already in the cart, show an error message
+        // alert('This product is already in your cart.');
+        openPopup();
+    } else {
+        // Product not in the cart, add it
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    // Update cart count and re-render products
+    updateCartCount();
+    renderProducts();
+}
+
+         // Function to render the cart
+         function renderCart() {
+            cartItems.innerHTML = "";
+
+            cart.forEach(product => {
+  // Create a container div for each product
+  const cartItemDiv = document.createElement("div");
+  cartItemDiv.className = "cart-item col-md-12";
+
+  const cartItemimgDiv = document.createElement("div");
+  cartItemimgDiv.className = "cart-item-img";
+
+  // Create and append product image
+  const productImage = document.createElement("img");
+  productImage.src = product.img;
+  cartItemimgDiv.appendChild(productImage);
+
+  // Create a child container div for inner content
+  const cartItemInnerDiv = document.createElement("div");
+  cartItemInnerDiv.className = "cart-item-inner";
+  
+
+  // Create and append product name
+  const productName = document.createElement("h5");
+  productName.textContent = `${product.subname}`;
+  cartItemInnerDiv.appendChild(productName);
+
+  // Create and append product price
+  const productPrice = document.createElement("h6");
+  productPrice.textContent = `Price: ₹${product.amt}`;
+  cartItemInnerDiv.appendChild(productPrice);
+
+  // Create and append "Customize" link
+  const customizeLink = document.createElement("a");
+    customizeLink.textContent = "Customize →";
+    customizeLink.href = `customize-shirt.html?id=${product.id}`; // Set the link's URL with the product ID as a query parameter
+    customizeLink.classList.add("custo-link");
+    customizeLink.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        openProductDetails(product.id);
+    });
+    cartItemInnerDiv.appendChild(customizeLink);
+
+  // Create and append "Go to Cart" link
+  const goToCartLink = document.createElement("a");
+  goToCartLink.textContent = "Go to Cart →";
+  goToCartLink.href = "cart.html"; // Set the link's URL
+  goToCartLink.classList.add("golink");
+  cartItemInnerDiv.appendChild(goToCartLink);
+
+//   const close = document.createElement("p");
+// close.textContent = "X";
+// close.id = "close"; // Set the ID to "close" instead of adding a class
+// cartItemInnerDiv.appendChild(close);
+
+  // Append the inner container to the outer container
+  cartItemDiv.appendChild(cartItemimgDiv);
+  cartItemDiv.appendChild(cartItemInnerDiv);
+
+  // Append the product container to the cartItems container
+  cartItems.prepend(cartItemDiv);
+
+  
+
+});
+
+       
+
+            // Calculate and display the total price in the cart
+            // const total = cart.reduce((acc, product) => acc + product.amt, 0);
+            // cartTotal.textContent = total;
+        }
+
+
+        colorCheckboxes.forEach(checkbox => checkbox.addEventListener("change", renderProducts));
+        typeCheckboxes.forEach(checkbox => checkbox.addEventListener("change", renderProducts));
+        priceRange.addEventListener("input", () => {
+            priceValue.textContent = `₹${priceRange.value}`;
+            renderProducts();
+        });
+
+        maxPriceSpan.textContent = `₹${priceRange.value}`;
+
+        // Initial render
+        renderProducts();
+        renderCart()
+
+
+        // const modal = document.getElementById("dark-ba");
+        const closeModelButton = document.getElementById("close");
+        
+    //     const addcartButtons = document.querySelectorAll(".add-to-cart");
+    // addcartButtons.forEach(button => {
+    //     button.addEventListener("click", () => {
+    //         oModal();
+    //     });
+    // });
+
+    document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("add-to-cart")) {
+        oModal();
+    }
+});
+
+    closeModelButton.addEventListener("click", () => {
+        cModal();
+    });
+
+    function oModal() {
+        console.log("Opening modal");
+        // modal.style.display = "block";
+        modal.classList.remove("hidden")
+    }
+
+    function cModal() {
+        console.log("Closing modal");
+        // modal.style.display = "none";
+        modal.classList.add("hidden")
+
+    }
+
+// Add an event listener to the close popup button
+const closePopupButton = document.getElementById("close-popup");
+closePopupButton.addEventListener("click", closePopup);
+    
+
+// function addToCartForCustomization(product) {
+//     // Check if the product is already in the cart
+//     const existingProduct = cart.find(item => item.id === product.id);
+
+//     if (existingProduct) {
+//         // Product already in the cart, show an error message
+//         openPopup();
+//     } else {
+//         // Product not in the cart, add it with a customization flag
+//         const productForCustomization = { ...product, forCustomization: true };
+//         cart.push(productForCustomization);
+//         localStorage.setItem("cart", JSON.stringify(cart));
+//     }
+
+//     // Update cart count and re-render products
+//     updateCartCount();
+//     renderProducts();
+// }
+
+
+function openProductDetails(productId) {
+    // Redirect the user to the product details page with the product ID as a query parameter
+    window.location.href = `customize-shirt.html?id=${productId}`;
+}
+
+const closeFabricPopupButton = document.getElementById("close-fabric-popup");
+closeFabricPopupButton.addEventListener("click", closeFabricPopup);
+
+});
+
+
+
+</script>
+</body>
+</html>

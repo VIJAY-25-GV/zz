@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <div class="product-details">
+            <div class="product-image">
+                <img src="product-image.jpg" alt="Product Image" id="product-image">
+            </div>
+            <div class="product-info">
+                <h1 id="product-name">Product Name</h1>
+                <p><strong>Price:</strong> <span id="product-price">Price</span></p>
+                <p><strong>Material:</strong> <span id="product-material">Material</span></p>
+                <p><strong>Color:</strong> <span id="product-color">Color</span></p>
+                <!-- Add more product details as needed -->
+                <button id="customize-button">Customize</button>
+            </div>
+        </div>
+    </main>
+    
+<div id="product-name"></div>
+
+
+<script>
+
+const productsData =  [ 
+{
+id:1,
+name:"Full Hand",
+subname:'Full Sleve Shirt',
+img: "./product/full.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/model-full.png",
+amt:400,
+matrial: "cotton",
+color:"white"
+},
+
+{
+id:2,
+name:"Full Hand",
+subname:'Full Sleve Red Shirt',
+img: "./product/full-red.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/red/model-full.png",
+amt:410,
+matrial: "cotton",
+color:"red"
+},
+{
+id:3,
+name:"Full Hand",
+subname:'Full Sleve Yellow Shirt',
+img: "./product/full-yellow.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/yellow/model-full.png",
+amt:420,
+matrial: "cotton",
+color: "yellow"
+},
+{
+id:4,
+name:"Full Hand",
+subname:'Full Sleve Blue Shirt',
+img: "./product/full-blue.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-full.png",
+amt:390,
+matrial: "cotton",
+color:"blue"
+},
+{
+id:5,
+name:"Full Hand",
+subname:'Full Sleve  Shirt',
+img: "./product/full-blue.png",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-full.png",
+amt:430,
+matrial: "Semi cotton",
+color:"blue"
+},
+{
+id:6,
+name:"Half Hand",
+subname:'Half Sleve Shirt',
+img: "./product/pro-1.png   ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/model-half.png",
+amt:410,
+matrial: "cotton",
+color:"white"
+},
+{
+id:7,
+name:"Half Hand",
+subname:'Half Sleve Red Shirt',
+img: "./product/half-red.png    ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/red/model-half.png",
+amt:400,
+matrial: "cotton",
+color:"red"
+},
+{
+id:8,
+name:"Half Hand",
+subname:'Half Sleve Yellow Shirt',
+img: "./product/half-yellow.png ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/yellow/model-half.png",
+amt:400,
+matrial: "cotton",
+color:"yellow"
+},
+{
+id:9,
+name:"Half Hand",
+subname:'Half Sleve Blue Shirt',
+img: "./product/half-blue.png   ",
+s2: "./product/full-red.png",
+s3: "./product/full-yellow.png",
+cusimg: "./image/top/blue/model-half.png",
+amt:430,
+matrial: "cotton",
+color:"blue"
+},
+    ];
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Retrieve the product ID from the query parameter
+  const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const productId = urlParams.get("id");
+
+// Find the product with the matching ID in the productsData array
+const product = productsData.find(item => item.id === parseInt(productId));
+
+if (product) {
+    // Display the product details on the page
+    // Example: Update HTML elements with product details
+    const productNameElement = document.getElementById("product-name");
+    const productImageElement = document.getElementById("product-image");
+    // Update other elements with product details
+    productNameElement.textContent = product.subname;
+    productImageElement.src = product.cusimg;
+    // Update other product details as needed
+} else {
+    // Product not found, handle accordingly (e.g., display an error message)
+    // Example: Redirect to a 404 page or show an error message
+    window.location.href = "404.html";
+}
+});
+  
+</script>
+</body>
+</html>
